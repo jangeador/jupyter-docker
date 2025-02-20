@@ -1,11 +1,14 @@
-version: '3'
+---
+
 services:
   jupyter:
+    container_name: jupyter
+    restart: unless-stopped
     build: 
       context: .
       dockerfile: ./docker/jupyter/Dockerfile
     volumes:
-      - ./work:/home/jovyan/work
+      - /home/delio/projects/notebooks:/home/jovyan/notebooks
     ports:
       - 8888:8888
     command: "start-notebook.sh --NotebookApp.token="
